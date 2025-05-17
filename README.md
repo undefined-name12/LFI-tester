@@ -1,181 +1,175 @@
 [![Python 3](https://img.shields.io/badge/Python-3-blue.svg)](https://www.python.org/downloads/)
-[![GNU V3 License](https://img.shields.io/badge/License-GNUV3-red.svg)](LICENSE)
 
-# DISCLAIMER
-• This tool is for educational purposes only.
+# AVISO LEGAL
+• Esta herramienta es solo para fines educativos.
 
-• The developers and collaborators are not responsible for any illegal usage of this tool.
-
-
+• Los desarrolladores y colaboradores no se hacen responsables del uso ilegal de esta herramienta.
 
 # LFITester
 
-LFITester is a Python3 tool which tests if a server is vulnerable to Local File Inclusion (LFI) attacks.
+LFITester es una herramienta para Python 3 que comprueba si un servidor es vulnerable a ataques de Inclusión Local de Archivos (LFI).
 
-It runs in Linux/Unix systems but it can run on windows as well. In order to use this program:
+Funciona en sistemas Linux/Unix, pero también es compatible con Windows. Para usar este programa:
 
-• You have to have Python3 installed in your system or you can download it from https://www.python.org/downloads/
+• Debe tener Python 3 instalado en su sistema o puede descargarlo desde https://www.python.org/downloads/
 
-• You will also need pip which if you don't have just run ```sudo apt install python3-pip``` for linux.
+• También necesitará pip. Si no lo tiene, simplemente ejecute ```sudo apt install python3-pip``` para Linux.
 
-• Download the program or clone the repository in your system `git clone https://github.com/kostas-pa/LFITester.git`
+• Descarga el programa o clona el repositorio en tu sistema: `git clone https://github.com/kostas-pa/LFITester.git`
 
-• Go to the LFITester folder
+• Accede a la carpeta LFITester
 
-• First run the command ```sudo chmod +x setup.sh```
+• Primero ejecuta el comando ```sudo chmod +x setup.sh```
 
-• Then run ```sudo ./setup.sh``` which will automatically install the required packages  
+• Luego ejecuta ```sudo ./setup.sh```, que instalará automáticamente los paquetes necesarios.
 
-• After that you can simply run lfitester as a command.
+• Después, puedes ejecutar ```lfitester`` como comando.
 
-• It is recommended to run the **--update** flag before initiating an attack
+Se recomienda ejecutar el indicador **--update** antes de iniciar un ataque.
 
-# Supported Attacks
+# Ataques admitidos
 
-- Path Traversal and bypasses (Null byte, encoding, Filter Bypasses)
-- PHP Filter
-- Remote Code Execution (RCE) through:
-   - Log Poisoning (Apache, Nginx)
-   - PHP Session Files
-   - PHP Wrappers
+- Recorrido de rutas y omisiones (byte nulo, codificación, omisiones de filtros)
+- Filtro PHP
+- Ejecución remota de código (RCE) mediante:
+- Envenenamiento de registros (Apache, Nginx)
+- Archivos de sesión PHP
+- Wrappers PHP
 
 ```
-$python3 LFITester.py 
-└──╼ $./LFITester.py 
- _      ______ _____ _______        _            
-| |    |  ____|_   _|__   __|      | |           
-| |    | |__    | |    | | ___  ___| |_ ___ _ __ 
-| |    |  __|   | |    | |/ _ \/ __| __/ _ \ '__|
-| |____| |     _| |_   | |  __/\__ \ ||  __/ |   
-|______|_|    |_____|  |_|\___||___/\__\___|_|   
-                                                 
-                                                 
+$python3 LFITester.py
+└──╼ $./LFITester.py
+_ ______ _____ _______ _
+| | | ____|_ _|__ __| | |
+| | | |__ | | | | ___ ___| |_ ___ _ __
+| | | __| | | | |/ _ \/ __| __/ _ \ '__|
+| |____| | _| |_ | | __/\__ \ || __/ |
+|______|_| |_____| |_|\___||___/\__\___|_|
 
-**********************************************************************************************************************************************************************************************
-                                                                                          LFITester
-                                                                                    Automated LFI Testing
-**********************************************************************************************************************************************************************************************
-usage: LFITester.py [-h] [-u URL] [-L URL_File] [-c] [-v] [-o [OUTFILE]] [--creds [user:pass]] [-p] [--autopwn IP]
-                    [-m Payload] [-f] [--update] [--batch-ans BATCH] [-s] [--poc-file POC] [-H HEADERS] [-C COOKIES]
+**************************************************************************************************************************************************************************************************
+LFITester
+Pruebas LFI automatizadas
+************************************************************************************************************************************************************************************************
+Uso: LFITester.py [-h] [-u URL] [-L Archivo_URL] [-c] [-v] [-o [ARCHIVO_SALIDA]] [--creds [usuario:contraseña]] [-p] [--autopwn IP]
+[-m Carga] [-f] [--update] [--batch-ans LOTE] [-s] [--poc-file POC] [-H ENCABEZADOS] [-C COOKIES]
 
-        Payload Modes:
-        0:  Simple bash TCP
-        1:  Alternative bash TCP
-        2:  Simple sh UDP
-        3:  Alternative sh TCP
-        4:  Perl TCP
-        5:  Alternative Perl TCP
-        6:  Python TCP
-        7:  Alternative python TCP
-        8:  Alternative 2 python TCP
-        9:  Alternative 3 python TCP
-        10: Alternative (No Spaces) python TCP
-        11: Alternative (No Spaces) 2 python TCP
-        12: Alternative (No Spaces) 3 python TCP
-        13: Alternative (No Spaces) Shortened python TCP
-        14: Alternative (No Spaces) Shortened 2 python TCP
-        15: Alternative (No Spaces) Shortened 3 python TCP
-        16: Alternative (No Spaces) Shortened Further python TCP
-        17: Alternative (No Spaces) Shortened Further 2 python TCP
-        18: Alternative (No Spaces) Shortened Further 3 python TCP
-        19: Python3 TCP
-        20: Alternative python3 TCP
-        21: Alternative 2 python3 TCP
-        22: Alternative 3 python3 TCP
-        23: Alternative (No Spaces) python3 TCP
-        24: Alternative (No Spaces) 2 python3 TCP
-        25: Alternative (No Spaces) 3 python3 TCP
-        26: Alternative (No Spaces) Shortened python3 TCP
-        27: Alternative (No Spaces) Shortened 2 python3 TCP
-        28: Alternative (No Spaces) Shortened 3 python3 TCP
-        29: Alternative (No Spaces) Shortened Further python3 TCP
-        30: Alternative (No Spaces) Shortened Further 2 python3 TCP
-        31: Alternative (No Spaces) Shortened Further 3 python3 TCP
-        32: Php exec
-        33: Php shell_exec
-        34: Php over sh
-        35: Php system
-        36: Php passthru
-        37: Php popen
-        38: Php proc_open
-        39: Ruby
-        40: Ruby Alternative
-        41: Go
-        42: Netcat sh
-        43: Netcat bash
-        44: Netcat alternative bash
-        45: Netcat openBSD
-        46: Ncat
-        47: Ncat UDP 
+Modos de carga útil:
+0: TCP bash simple
+1: TCP bash alternativo
+2: UDP sh simple
+3: TCP sh alternativo
+4: TCP Perl
+5: TCP Perl alternativo
+6: TCP Python
+7: TCP Python alternativo
+8: TCP Python alternativo 2
+9: TCP Python alternativo 3
+10: TCP Python alternativo (sin espacios)
+11: TCP Python alternativo (sin espacios)
+12: TCP Python alternativo (sin espacios)
+13: TCP Python alternativo (sin espacios) abreviado
+14: TCP Python alternativo (sin espacios) abreviado
+15: TCP Python alternativo (sin espacios) abreviado
+16: TCP Python alternativo (sin espacios) abreviado Python TCP
+17: Alternativa (sin espacios) Acortado aún más 2 Python TCP
+18: Alternativa (sin espacios) Acortado aún más 3 Python TCP
+19: Python3 TCP
+20: Alternativa Python3 TCP
+21: Alternativa 2 Python3 TCP
+22: Alternativa 3 Python3 TCP
+23: Alternativa (sin espacios) Python3 TCP
+24: Alternativa (sin espacios) Python3 TCP
+25: Alternativa (sin espacios) Python3 TCP
+26: Alternativa (sin espacios) Acortado Python3 TCP
+27: Alternativa (sin espacios) Acortado aún más 2 Python3 TCP
+28: Alternativa (sin espacios) Acortado aún más 3 Python3 TCP
+29: Alternativa (sin espacios) Acortado aún más 30: Alternativa (sin espacios) Acortado aún más 2 python3 TCP
+31: Alternativa (sin espacios) Acortada aún más 3 python3 TCP
+32: Php exec
+33: Php shell_exec
+34: Php over sh
+35: Php system
+36: Php passthru
+37: Php popen
+38: Php proc_open
+39: Ruby
+40: Alternativa a Ruby
+41: Go
+42: Netcat sh
+43: Netcat bash
+44: Netcat alternative bash
+45: Netcat openBSD
+46: Ncat
+47: Ncat UDP
 
-options:
-  -h, --help            show this help message and exit
-  -u URL, --url URL     The url to test. The URL usually is http://[URL]?[something]=
-  -L URL_File, --list-url URL_File
-                        Input a list of URLs from an external file. The URLs format usually is http://[URL]?[something]=
-  -c, --crawl           use the crawler to test all the endpoints
-  -v, --verbose         Increase output verbosity
-  -o [OUTFILE], --output [OUTFILE]
-                        The file to save the results
-  --creds [user:pass]   The credentials to login
-  -p, --enable-proxies  Enable proxy redirection. Default proxies are free and you can change them. If you don't want the
-                        default proxies you can supply your own and this option will be overridden! Note that the proxies
-                        will be picked at random for each request
-  --autopwn IP          If the webapp is vulnerable to LFI then it will attempt to exploit it and give back a shell. This
-                        option requires your IP in order to connect with the revshell
-  -m Payload, --mode Payload
-                        Select the payload that suits best. Try different ones if the exploit doesn't work.
-  -f, --force           Treat endpoint as alive even if it returns 404
-  --update              Update LFITester
-  --batch-ans BATCH     Answer all yes/no
-  -s, --stealth         Enable stealth mode
-  --poc-file POC        Your custom poc file.
-  -H HEADERS, --headers HEADERS
-                        Add extra headers
-  -C COOKIES, --cookies COOKIES
-                        Add extra cookies
-  -r PACKET_FILE, --packet-file PACKET_FILE
-                        Import headers/cookies/body from a packet file (HTTP or Burp format)
+Opciones:
+-h, --help Mostrar este mensaje de ayuda y salir
+-u URL, --url URL La URL para probar. La URL suele ser http://[URL]?[algo]=
+-L Archivo_URL, --list-url Archivo_URL
+Introduce una lista de URL desde un archivo externo. El formato de las URL suele ser http://[URL]?[algo]=
+-c, --crawl Usa el rastreador para probar todos los endpoints
+-v, --verbose Aumenta el nivel de detalle de la salida
+-o [ARCHIVO_DE_SALIDA], --output [ARCHIVO_DE_SALIDA]
+El archivo donde se guarda el resultado
+lts
+--creds [usuario:contraseña] Las credenciales para iniciar sesión
+-p, --enable-proxies Habilita la redirección de proxy. Los proxies predeterminados son gratuitos y puedes cambiarlos. Si no quieres los proxies predeterminados, puedes proporcionar los tuyos propios y esta opción se anulará. Ten en cuenta que los proxies se seleccionarán aleatoriamente para cada solicitud.
+--autopwn IP Si la aplicación web es vulnerable a LFI, intentará explotarla y devolverá un shell. Esta opción requiere tu IP para conectarse con el revshell.
+-m Carga útil, --mode Carga útil
+Selecciona la carga útil que mejor se adapte. Prueba diferentes si el exploit no funciona.
+-f, --force Trata el endpoint como activo incluso si devuelve 404.
+--update Actualiza LFITester.
+--batch-ans LOTE Responde a todos los mensajes sí/no.
+-s, --stealth Habilita el modo oculto.
+--poc-file POC Tu archivo POC personalizado. -H ENCABEZADOS, --headers ENCABEZADOS
+Añadir encabezados adicionales
+-C COOKIES, --cookies COOKIES
+Añadir cookies adicionales
+-r ARCHIVO_DE_PAQUETE, --packet-file ARCHIVO_DE_PAQUETE
+Importar encabezados/cookies/cuerpo desde un archivo de paquete (formato HTTP o Burp)
 
-Proxies in the list must be in the following format: protocol://{proxyip} 
-username:password (newline). If you dont have a authenticated 
-proxy then skip the username:password entry and go for a new line
+Los proxies de la lista deben tener el siguiente formato: protocolo://{proxyip}
+usuario:contraseña (nueva línea). Si no tiene un proxy autenticado, omita la entrada "nombre de usuario:contraseña" y escriba una nueva línea.
 
-Examples: 
-            LFITester.py -u "http://URL?smt=" = test one specific endpoint
-            LFITester.py -L test.txt = test a list of endpoints from file
-            LFITester.py -c -u "http://URL" = crawl and test all endpoints of that URL
-            LFITester.py -c -L test.txt = crawl and test all endpoints for every URL in the file
-            LFITester.py --creds abc:abc -u "http://URL?smt=" = test one specific endpoint which requires a login
+Ejemplos:
 
-Developers: Konstantinos Papanagnou (https://github.com/Konstantinos-Papanagnou)
-            Konstantinos Pantazis   (https://github.com/kostas-pa)
-            Timothy Stowe           (https://github.com/timothy90990)
+LFITester.py -u "http://URL?smt=" = probar un endpoint específico
+
+LFITester.py -L test.txt = probar una lista de endpoints del archivo
+
+LFITester.py -c -u "http://URL" = rastrear y probar todos los endpoints de esa URL
+
+LFITester.py -c -L test.txt = rastrear y probar todos los endpoints de cada URL del archivo
+
+LFITester.py --creds abc:abc -u "http://URL?smt=" = probar un endpoint específico que requiere inicio de sesión
+
+Desarrolladores: Konstantinos Papanagnou (https://github.com/Konstantinos-Papanagnou)
+
+Konstantinos Pantazis (https://github.com/kostas-pa)
+
+Timothy Stowe (https://github.com/timothy90990)
 ```
 
-• Basic Usage: `python3 LFITester.py -u "http://myvulnerabledomain/vulnerable/application?test_param="`
+• Uso básico: `python3 LFITester.py -u "http://myvulnerabledomain/vulnerable/application?test_param="`
 
-# New Feature AUTOPWN & Threading support
-- Automatically opens a reverse shell if it finds RCE (see all the reverse shells in the description).
-- Added threads to the attacks and to the proxies which speeds things up significantly!
+# Nueva función: AUTOPWN y compatibilidad con subprocesos
+- Abre automáticamente una shell inversa si encuentra RCE (ver todas las shells inversas en la descripción).
+- Se añadieron subprocesos a los ataques y a los proxies, lo que agiliza considerablemente el proceso.
 
-# ⚠️ Common Issues
-• If you are having issues with a URL that has 2 query parameters like http://url?param1=1&param2=2, try to run it with "" like so "http://url?param1=1&param2=2"
+# ⚠️ Problemas comunes
+• Si tienes problemas con una URL con dos parámetros de consulta, como http://url?param1=1&param2=2, intenta ejecutarla con "" como "http://url?param1=1&param2=2"
 
-• If you are user and you get an error about Git, then try to run lfitester with the sudo command like so **sudo lfitester [flags]**
+• Si eres usuario y recibes un error sobre Git, intenta ejecutar lfitester con el comando sudo como **sudo lfitester [flags]**
 
-• If you are having issues with a library, try running the **--update** flag and then ```sudo pip3 install -r requirements.txt``` as the requirements may have changed
+• Si tienes problemas con una biblioteca, intenta ejecutar el comando **--update** y luego ```sudo pip3 install -r requirements.txt``, ya que los requisitos podrían haber cambiado.
 
-• If you can't see the color in the output file but instead you see color codes, google ```[your text editor] display ANSI color codes```.
+• Si no ves el color en el archivo de salida, pero en su lugar ves códigos de color, busca en Google ```[tu editor de texto] mostrar códigos de color ANSI``.
 
-• If the setup.sh can't install a python package, try installing it manually with the command ```sudo pip3 install [package]```
+• Si setup.sh no puede instalar un paquete de Python, intenta instalarlo manualmente con el comando ```sudo pip3 install [paquete]```
 
-• If it gets stuck just press enter, for now :)
+• Si se bloquea, simplemente presiona Enter, por ahora :)
 
-• If you get strange encoding results, try to remove any value from the parameters, including Burp files.
+• Si obtienes resultados de codificación extraños, intenta eliminar cualquier valor de los parámetros, incluidos los archivos Burp.
 
-# Sidenote
-• If you like this project please consider giving it a star
-
-# Credits
-• To all the contributors for assisting me with this project and for the knowledge they provided.
+# Nota al margen
+• Si te gusta este proyecto, considera darle una estrella.
