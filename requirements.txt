@@ -1,0 +1,8 @@
+beautifulsoup4
+GitPython
+lxml
+pwn
+pwntools
+pyfiglet
+requests
+termcolor
